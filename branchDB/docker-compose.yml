@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    branch-database:
+        image: mysql
+        environment:
+            MYSQL_HOST: branch_management
+            MYSQL_USER: user
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: branch_management
+        ports:
+            - "5004:3306"
+        volumes:
+            - "./db/init.sql:/docker-entrypoint-initdb.d/init.sql"
+        networks:
+            - branch-network
+
+networks:
+    branch-network:
+        driver: bridge
